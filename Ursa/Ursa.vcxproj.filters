@@ -1,36 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Ursa">
+      <UniqueIdentifier>{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Ursa\Events">
+      <UniqueIdentifier>{C4AF34A4-3065-AD99-B959-A770250EA49D}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Ursa\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Ursa.h" />
     <ClInclude Include="src\Ursa\Application.h">
-      <Filter>Header Files</Filter>
+      <Filter>Ursa</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Ursa\Core.h">
+      <Filter>Ursa</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Events\ApplicationEvent.h">
+      <Filter>Ursa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Events\Event.h">
+      <Filter>Ursa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Events\KeyEvent.h">
+      <Filter>Ursa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Events\MouseEvent.h">
+      <Filter>Ursa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Log.h">
+      <Filter>Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ursapch.h" />
+    <ClInclude Include="src\Ursa\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Ursa\Window.h">
+      <Filter>Ursa</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ursa\Application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Ursa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Log.cpp">
+      <Filter>Ursa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ursapch.cpp" />
+    <ClCompile Include="src\Ursa\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

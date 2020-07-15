@@ -5,7 +5,10 @@
 extern Ursa::Application* Ursa::CreateApplication();
 
 int main(int argc, char** argv) {
-	printf("Starting the Ursa Engine!");
+	Ursa::Log::Init();
+	URSA_CORE_WARN("Initialised Log");
+	URSA_INFO("Boop!");
+
 	auto app = Ursa::CreateApplication();
 	app->Run();
 	delete app;

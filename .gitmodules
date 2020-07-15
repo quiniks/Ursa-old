@@ -1,0 +1,6 @@
+[submodule "Ursa/vendor/spdlog"]
+	path = Ursa/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Ursa/vendor/GLFW"]
+	path = Ursa/vendor/GLFW
+	url = https://github.com/TheCherno/glfw

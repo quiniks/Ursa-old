@@ -2,8 +2,8 @@
 
 // For use by Ursa apps
 
-#include <stdio.h>
 #include "Ursa/Application.h"
+#include "Ursa/Log.h"
 
 // Entry point
 

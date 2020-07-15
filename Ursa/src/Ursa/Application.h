@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
+#include "Ursa/Events/ApplicationEvent.h"
+#include "Window.h"
 
 namespace Ursa {
 
@@ -9,9 +12,13 @@ namespace Ursa {
 		Application();
 		virtual ~Application();
 		void Run();
+		void OnEvent(Event& e);
+	private:
+		bool OnWindowClosed(WindowCloseEvent& e);
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
 
-	//Defined in client
+	//Define in client
 	Application* CreateApplication();
 }
-
