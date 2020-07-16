@@ -12,8 +12,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (sln directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ursa/vendor/GLFW/include"
+IncludeDir["Glad"] = "Ursa/vendor/Glad/include"
+IncludeDir["ImGui"] = "Ursa/vendor/imgui"
 
 include "Ursa/vendor/GLFW"
+include "Ursa/vendor/Glad"
+include "Ursa/vendor/ImGui"
 
 project "Ursa"
 	location "Ursa"
@@ -34,12 +38,16 @@ project "Ursa"
 	includedirs {
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links {
 		"GLFW",
-		"opengl32.lib"
+		"Glad",
+		"opengl32.lib",
+		"ImGui"
 	}
 
 	filter "system:windows"
@@ -49,7 +57,8 @@ project "Ursa"
 
 		defines {
 			"URSA_PLATFORM_WINDOWS",
-			"URSA_BUILD_DLL"
+			"URSA_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {
@@ -58,14 +67,17 @@ project "Ursa"
 
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
+			buildoptions "/MD"
 			optimize "On"
 
 project "Sandbox"
@@ -101,12 +113,15 @@ project "Sandbox"
 
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
+			buildoptions "/MD"
 			optimize "On"

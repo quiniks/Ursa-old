@@ -4,3 +4,6 @@
 [submodule "Ursa/vendor/GLFW"]
 	path = Ursa/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Ursa/vendor/imgui"]
+	path = Ursa/vendor/imgui
+	url = https://github.com/TheCherno/imgui

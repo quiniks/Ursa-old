@@ -7,6 +7,18 @@
     <Filter Include="Ursa\Events">
       <UniqueIdentifier>{C4AF34A4-3065-AD99-B959-A770250EA49D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ursa\ImGui">
+      <UniqueIdentifier>{0A7D062C-F634-4879-5F3C-21D54B13E369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ursa\Platform">
+      <UniqueIdentifier>{34B83DA0-A078-B9D6-69B3-0254D532FEB2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ursa\Platform\OpenGL">
+      <UniqueIdentifier>{E89E5A8A-D42D-E453-7D4C-F84E69BAF4F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ursa\Platform\Windows">
+      <UniqueIdentifier>{6E56CA2D-DAC2-8528-A3B6-1D860FE2A790}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ursa.h" />
@@ -31,23 +43,51 @@
     <ClInclude Include="src\Ursa\Events\MouseEvent.h">
       <Filter>Ursa\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\ImGui\ImGuiLayer.h">
+      <Filter>Ursa\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Layer.h">
+      <Filter>Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\LayerStack.h">
+      <Filter>Ursa</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Log.h">
       <Filter>Ursa</Filter>
     </ClInclude>
-    <ClInclude Include="src\ursapch.h" />
-    <ClInclude Include="src\Ursa\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Ursa\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Ursa\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Platform\Windows\WindowsWindow.h">
+      <Filter>Ursa\Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Window.h">
       <Filter>Ursa</Filter>
     </ClInclude>
+    <ClInclude Include="src\ursapch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ursa\Application.cpp">
       <Filter>Ursa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\ImGui\ImGuiLayer.cpp">
+      <Filter>Ursa\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Layer.cpp">
+      <Filter>Ursa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\LayerStack.cpp">
+      <Filter>Ursa</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ursa\Log.cpp">
       <Filter>Ursa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Ursa\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Ursa\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\ursapch.cpp" />
-    <ClCompile Include="src\Ursa\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>
