@@ -1,5 +1,6 @@
 workspace "Ursa"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations {
 		"Debug",
@@ -15,14 +16,17 @@ IncludeDir["GLFW"] = "Ursa/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ursa/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ursa/vendor/imgui"
 
-include "Ursa/vendor/GLFW"
-include "Ursa/vendor/Glad"
-include "Ursa/vendor/ImGui"
+group "Dependencies"
+	include "Ursa/vendor/GLFW"
+	include "Ursa/vendor/Glad"
+	include "Ursa/vendor/ImGui"
+group ""
 
 project "Ursa"
 	location "Ursa"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -52,7 +56,6 @@ project "Ursa"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -62,28 +65,29 @@ project "Ursa"
 		}
 
 		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -104,7 +108,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -113,15 +116,15 @@ project "Sandbox"
 
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"

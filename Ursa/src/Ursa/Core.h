@@ -10,6 +10,10 @@
 	#error Ursa only supports Windows
 #endif
 
+#ifdef URSA_DEBUG
+	#define URSA_ENABLE_ASSERTS
+#endif
+
 #ifdef URSA_ENABLE_ASSERTS
 	#define URSA_ASSERT(x, ...) {if(!(x)) {URSA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
 	#define URSA_CORE_ASSERT(x, ...) {if(!(x)) {URSA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}}
@@ -20,3 +24,4 @@
 
 
 #define BIT(x) (1 << x)
+#define URSA_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

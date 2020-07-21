@@ -65,6 +65,14 @@
       <Filter>Ursa</Filter>
     </ClInclude>
     <ClInclude Include="src\ursapch.h" />
+    <ClInclude Include="src\Ursa\Input.h">
+      <Filter>Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Platform\Windows\WindowsInput.h">
+      <Filter>Ursa\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\KeyCodes.h" />
+    <ClInclude Include="src\Ursa\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ursa\Application.cpp">
@@ -89,5 +97,8 @@
       <Filter>Ursa\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\ursapch.cpp" />
+    <ClCompile Include="src\Ursa\Platform\Windows\WindowsInput.cpp">
+      <Filter>Ursa\Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
