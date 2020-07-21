@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Ursa/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ursa/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ursa/vendor/imgui"
+IncludeDir["glm"] = "Ursa/vendor/glm"
 
 group "Dependencies"
 	include "Ursa/vendor/GLFW"
@@ -36,7 +37,9 @@ project "Ursa"
 
 	files {
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm//**.hpp",
+		"%{prj.name}/vendor/glm//**.inl"
 	}
 
 	includedirs {
@@ -44,7 +47,8 @@ project "Ursa"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
@@ -99,7 +103,8 @@ project "Sandbox"
 
 	includedirs {
 		"Ursa/vendor/spdlog/include",
-		"Ursa/src"
+		"Ursa/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links {

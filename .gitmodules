@@ -7,3 +7,6 @@
 [submodule "Ursa/vendor/imgui"]
 	path = Ursa/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Ursa/vendor/glm"]
+	path = Ursa/vendor/glm
+	url = https://github.com/g-truc/glm
