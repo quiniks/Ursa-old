@@ -1,13 +1,17 @@
 #pragma once
 
-#ifdef URSA_PLATFORM_WINDOWS
-	#ifdef URSA_BUILD_DLL
-		#define URSA_API __declspec(dllexport)
+#ifdef _WIN32
+	/* Windows x64/x86 */
+	#ifdef _WIN64
+		/* Windows x64  */
+		#define URSA_PLATFORM_WINDOWS
 	#else
-		#define URSA_API __declspec(dllimport)
+		/* Windows x86 */
+		#error "x86 Builds are not supported!"
 	#endif
 #else
-	#error Ursa only supports Windows
+	/* Unknown compiler/platform */
+	#error "Unknown platform!"
 #endif
 
 #ifdef URSA_DEBUG

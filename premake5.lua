@@ -25,9 +25,10 @@ group ""
 
 project "Ursa"
 	location "Ursa"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -59,12 +60,10 @@ project "Ursa"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines {
-			"URSA_PLATFORM_WINDOWS",
-			"URSA_BUILD_DLL",
+			"_CRT_SECURE_NO_WARNINGS",
 			"GLFW_INCLUDE_NONE"
 		}
 
@@ -75,23 +74,24 @@ project "Ursa"
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
 			runtime "Debug"
-			symbols "On"
+			symbols "on"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -104,7 +104,9 @@ project "Sandbox"
 	includedirs {
 		"Ursa/vendor/spdlog/include",
 		"Ursa/src",
+		"Ursa/vendor",
 		"%{IncludeDir.glm}"
+
 	}
 
 	links {
@@ -112,24 +114,19 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
-
-		defines {
-			"URSA_PLATFORM_WINDOWS"
-		}
 
 		filter "configurations:Debug"
 			defines "URSA_DEBUG"
 			runtime "Debug"
-			symbols "On"
+			symbols "on"
 
 		filter "configurations:Release"
 			defines "URSA_RELEASE"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 		filter "configurations:Dist"
 			defines "URSA_DIST"
 			runtime "Release"
-			optimize "On"
+			optimize "on"

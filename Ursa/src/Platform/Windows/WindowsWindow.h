@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Ursa/Window.h"
+#include "Ursa/Renderer/RenderContext.h"
 #include <GLFW/glfw3.h>
+
 
 namespace Ursa {
 	class WindowsWindow : public Window {
@@ -22,15 +24,15 @@ namespace Ursa {
 	private:
 		virtual void Init(const WindowProperties& props);
 		virtual void Shutdown();
-
+	private:
 		GLFWwindow* m_Window;
-		struct WindowData {
-			std::string Title;
-			unsigned int Width, Height;
-			bool VSync;
-			EventCallbackFn EventCallback;
-		};
+		RenderContext* m_Context;
 
-		WindowData m_Data;
+		struct WindowData {
+			std::string Title = "";
+			unsigned int Width = 1080, Height = 720;
+			bool VSync = true;
+			EventCallbackFn EventCallback = nullptr;
+		} m_Data;
 	};
 }

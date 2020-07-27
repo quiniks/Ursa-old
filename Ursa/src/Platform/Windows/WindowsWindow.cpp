@@ -3,7 +3,7 @@
 #include "Ursa/Events/ApplicationEvent.h"
 #include "Ursa/Events/MouseEvent.h"
 #include "Ursa/Events/KeyEvent.h"
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Ursa {
 	static bool s_GLFWInitialized = false;
@@ -40,9 +40,10 @@ namespace Ursa {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		URSA_CORE_ASSERT(status, "Failed to initialise Glad");
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -131,7 +132,7 @@ namespace Ursa {
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {

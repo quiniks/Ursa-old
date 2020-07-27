@@ -1,6 +1,7 @@
 #pragma once
 
 // For use by Ursa apps
+#include "Ursa/Core.h"
 
 #include "Ursa/Application.h"
 #include "Ursa/Layer.h"

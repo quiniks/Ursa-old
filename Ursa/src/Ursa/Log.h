@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Core.h"
+#pragma warning (push, 0)
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+#pragma warning (pop)
 
 namespace Ursa {
 
-	class URSA_API Log
+	class Log
 	{
 	public:
 		static void Init();
