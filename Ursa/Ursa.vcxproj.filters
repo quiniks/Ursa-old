@@ -4,6 +4,15 @@
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Ursa">
       <UniqueIdentifier>{57BF26CF-438C-81DA-6CA5-6F8258D1B668}</UniqueIdentifier>
     </Filter>
@@ -13,11 +22,8 @@
     <Filter Include="src\Ursa\ImGui">
       <UniqueIdentifier>{C1190D63-ADE7-0069-967B-718F82E8DCCD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Ursa\Platform">
-      <UniqueIdentifier>{8B2D7317-F743-71AD-40BB-FCCEAC104235}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Ursa\Platform\Windows">
-      <UniqueIdentifier>{C532EF7F-31F5-220A-7AA5-B196E6A6FBE7}</UniqueIdentifier>
+    <Filter Include="src\Ursa\Renderer">
+      <UniqueIdentifier>{DD3450F2-494B-4E88-92C2-D9A9FE171F10}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -42,10 +48,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Application.h">
+      <Filter>src\Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\BitMask.h">
       <Filter>src\Ursa</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Core.h">
@@ -86,6 +107,18 @@
     </ClInclude>
     <ClInclude Include="src\Ursa\MouseCodes.h">
       <Filter>src\Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\Buffer.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\RenderContext.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\Renderer.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\Shader.h">
+      <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Window.h">
       <Filter>src\Ursa</Filter>
@@ -1317,21 +1350,22 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Renderer\RenderContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Ursa\Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>src\Ursa\Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\Renderer\Shader.h" />
-    <ClInclude Include="src\Ursa\BitMask.h" />
-    <ClInclude Include="src\Ursa\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Ursa\Renderer\Renderer.h" />
+    <ClInclude Include="src\Ursa\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ursa\Application.cpp">
       <Filter>src\Ursa</Filter>
     </ClCompile>
@@ -1350,19 +1384,19 @@
     <ClCompile Include="src\Ursa\Log.cpp">
       <Filter>src\Ursa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\Buffer.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\Renderer.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\Shader.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ursapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>src\Ursa\Platform\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>src\Ursa\Platform\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ursa\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Ursa\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>

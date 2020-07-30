@@ -150,6 +150,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Ursa.h" />
     <ClInclude Include="src\Ursa\Application.h" />
     <ClInclude Include="src\Ursa\BitMask.h" />
@@ -166,13 +170,11 @@
     <ClInclude Include="src\Ursa\LayerStack.h" />
     <ClInclude Include="src\Ursa\Log.h" />
     <ClInclude Include="src\Ursa\MouseCodes.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Ursa\Renderer\Buffer.h" />
     <ClInclude Include="src\Ursa\Renderer\RenderContext.h" />
     <ClInclude Include="src\Ursa\Renderer\Renderer.h" />
     <ClInclude Include="src\Ursa\Renderer\Shader.h" />
+    <ClInclude Include="src\Ursa\Renderer\VertexArray.h" />
     <ClInclude Include="src\Ursa\Window.h" />
     <ClInclude Include="src\ursapch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -586,21 +588,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Ursa\Application.cpp" />
     <ClCompile Include="src\Ursa\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Ursa\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Ursa\Layer.cpp" />
     <ClCompile Include="src\Ursa\LayerStack.cpp" />
     <ClCompile Include="src\Ursa\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\ursapch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Ursa\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Ursa\Renderer\Shader.cpp" />
+    <ClCompile Include="src\ursapch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

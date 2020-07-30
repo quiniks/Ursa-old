@@ -25,10 +25,10 @@ namespace Ursa {
 
 	struct BufferElement {
 		std::string Name;
-		ShaderDataType Type;
-		uint32_t Size;
-		uint32_t Offset;
-		bool Normalized;
+		ShaderDataType Type = ShaderDataType::None;
+		uint32_t Size = 0;
+		uint32_t Offset = 0;
+		bool Normalized = false;
 
 		BufferElement() {}
 
@@ -49,6 +49,7 @@ namespace Ursa {
 				case ShaderDataType::Int4:		return 4;
 				case ShaderDataType::Bool:		return 1;
 			}
+			return 0;
 		}
 	};
 
@@ -66,6 +67,9 @@ namespace Ursa {
 		
 		std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
 		std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
+
+		std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
+		std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
 	private:
 		void CalculateOffsetAndStride() {
 			uint32_t offset = 0;
@@ -78,7 +82,7 @@ namespace Ursa {
 		}
 	private:
 		std::vector<BufferElement> m_Elements;
-		uint32_t m_Stride;
+		uint32_t m_Stride = 0;
 	};
 
 	class VertexBuffer {
