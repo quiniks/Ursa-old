@@ -7,10 +7,10 @@ namespace Ursa {
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI()) {
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 		}
 		URSA_CORE_ASSERT(false, "Unkown RendererAPI");
@@ -20,10 +20,10 @@ namespace Ursa {
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
 		switch (Renderer::GetAPI()) {
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, size);
 		}
 		URSA_CORE_ASSERT(false, "Unkown RendererAPI");

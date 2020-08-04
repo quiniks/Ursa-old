@@ -10,6 +10,8 @@
 #include "Ursa/Renderer/Shader.h"
 #include "Ursa/Renderer/Buffer.h"
 #include "Ursa/Renderer/VertexArray.h"
+#include "Ursa/Renderer/OrthographicCamera.h"
+
 
 namespace Ursa {
 
@@ -34,12 +36,13 @@ namespace Ursa {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		//unsigned int m_VertexArray;
 		std::shared_ptr<Shader> m_Shader;
 		std::shared_ptr<VertexArray> m_TriVertexArray;
 
 		std::shared_ptr<Shader> m_Shader2;
 		std::shared_ptr<VertexArray> m_SquareVertexArray;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
