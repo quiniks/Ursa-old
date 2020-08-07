@@ -2,6 +2,7 @@
 
 #include "Ursa/Core.h"
 #include "Ursa/Events/Event.h"
+#include "Ursa/Core/TimeStep.h"
 
 namespace Ursa {
 	class Layer {
@@ -10,7 +11,7 @@ namespace Ursa {
 		virtual ~Layer();
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep timeStep) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 		const std::string& GetName() const { return m_DebugName; }

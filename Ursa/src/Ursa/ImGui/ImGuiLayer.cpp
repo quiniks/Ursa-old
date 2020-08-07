@@ -1,9 +1,13 @@
 #include "ursapch.h"
 #include "ImGuiLayer.h"
 
+#pragma warning(push)
+#pragma warning(disable : 6011)
+#pragma warning(disable : 26495)
 #include "imgui.h"
 #include "examples/imgui_impl_opengl3.h"
 #include "examples/imgui_impl_glfw.h"
+#pragma warning(pop)
 
 
 #include "Ursa/Application.h"

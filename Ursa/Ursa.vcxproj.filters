@@ -16,6 +16,9 @@
     <Filter Include="src\Ursa">
       <UniqueIdentifier>{57BF26CF-438C-81DA-6CA5-6F8258D1B668}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ursa\Core">
+      <UniqueIdentifier>{0F12A08E-7BD2-1BC5-440D-6542B08C60A1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Ursa\Events">
       <UniqueIdentifier>{5BE30EBC-C76E-7C80-D07F-FF743C8AD880}</UniqueIdentifier>
     </Filter>
@@ -46,12 +49,27 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -71,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="src\Ursa\Core.h">
       <Filter>src\Ursa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\TimeStep.h">
+      <Filter>src\Ursa\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\EntryPoint.h">
       <Filter>src\Ursa</Filter>
@@ -111,13 +132,28 @@
     <ClInclude Include="src\Ursa\Renderer\Buffer.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\OrthographicCamera.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\RenderCommand.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\RenderContext.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\Renderer.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\RendererAPI.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\Shader.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\Texture.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\VertexArray.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Window.h">
@@ -1350,18 +1386,27 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Ursa\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Ursa\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Ursa\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1391,20 +1436,32 @@
     <ClCompile Include="src\Ursa\Renderer\Buffer.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\RenderCommand.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Renderer.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\RendererAPI.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Shader.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\Texture.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\VertexArray.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ursapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ursa\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,10 +7,7 @@
 #include "Ursa/Events/Event.h"
 #include "Ursa/Events/ApplicationEvent.h"
 #include "Ursa/ImGui/ImGuiLayer.h"
-#include "Ursa/Renderer/Shader.h"
-#include "Ursa/Renderer/Buffer.h"
-#include "Ursa/Renderer/VertexArray.h"
-#include "Ursa/Renderer/OrthographicCamera.h"
+#include "Ursa/Core/TimeStep.h"
 
 
 namespace Ursa {
@@ -29,20 +26,12 @@ namespace Ursa {
 		Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
-
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_TriVertexArray;
-
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-
-		OrthographicCamera m_Camera;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "Ursa/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ursa/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ursa/vendor/imgui"
 IncludeDir["glm"] = "Ursa/vendor/glm"
+IncludeDir["stb_image"] = "Ursa/vendor/stb_image"
 
 group "Dependencies"
 	include "Ursa/vendor/GLFW"
@@ -39,6 +40,8 @@ project "Ursa"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm//**.hpp",
 		"%{prj.name}/vendor/glm//**.inl"
 	}
@@ -49,7 +52,8 @@ project "Ursa"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links {

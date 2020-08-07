@@ -1,13 +1,14 @@
 #include "ursapch.h"
 #include "Application.h"
 #include "Ursa/Renderer/Renderer.h"
+#include <GLFW/glfw3.h>
 
 namespace Ursa {
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 	
-	Application::Application() : m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+	Application::Application()
 	{
 		URSA_CORE_ASSERT(!s_Instance, "Applcation already exists");
 		s_Instance = this;
@@ -15,114 +16,10 @@ namespace Ursa {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+		Renderer::Init();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-		
-		//Triangle/////////////
-		m_TriVertexArray.reset(VertexArray::Create());
-
-		float triVertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f,		1.0f, 0.4f, 0.7f, 1.0f,
-			0.5f, -0.5f, 0.0f,		0.9f, 0.9f, 0.6f, 1.0f,
-			0.0f, 0.5f, 0.0f,		0.4f, 0.8f, 0.8f, 1.0f
-		};
-
-		std::shared_ptr<VertexBuffer> triVertexBuffer;
-		triVertexBuffer.reset(VertexBuffer::Create(triVertices, sizeof(triVertices)));
-		triVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position" },
-			{ ShaderDataType::Float4, "a_Color" }
-		});
-		m_TriVertexArray->AddVertexBuffer(triVertexBuffer);
-
-		uint32_t triIndices[3] = {0, 1, 2};
-		std::shared_ptr<IndexBuffer> triIndexBuffer;
-		triIndexBuffer.reset(IndexBuffer::Create(triIndices, sizeof(triIndices) / sizeof(uint32_t)));
-		m_TriVertexArray->SetIndexBuffer(triIndexBuffer);
-		
-		//Square/////////////
-		m_SquareVertexArray.reset(VertexArray::Create());
-
-		float sqrVertices[3 * 7] = {
-			-0.6f, -0.6f, 0.0f,
-			0.6f, -0.6f, 0.0f,
-			0.6f, 0.6f, 0.0f,
-			-0.6f, 0.6f, 0.0f
-		};
-
-		std::shared_ptr<VertexBuffer> squareVertexBuffer;
-		squareVertexBuffer.reset(VertexBuffer::Create(sqrVertices, sizeof(sqrVertices)));
-		squareVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position" }
-		});
-		m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
-
-		uint32_t sqrIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<IndexBuffer> squareIndexBuffer;
-		squareIndexBuffer.reset(IndexBuffer::Create(sqrIndices, sizeof(sqrIndices) / sizeof(uint32_t)));
-		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
-
-		std::string vertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-
-			uniform mat4 u_ViewProjection;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main() {
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection *  vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main() {
-				//color = vec4(0.019, 0.658, 1.0, 1.0);
-				//color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-
-		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
-
-		std::string vertexSrc2 = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-
-			uniform mat4 u_ViewProjection;
-
-			out vec3 v_Position;
-
-			void main() {
-				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentSrc2 = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-
-			void main() {
-				color = vec4(0.9, 0.9, 0.6, 1.0);
-			}
-		)";
-
-		m_Shader2.reset(new Shader(vertexSrc2, fragmentSrc2));
 	}
 
 	Application::~Application()
@@ -153,21 +50,12 @@ namespace Ursa {
 
 	void Application::Run() {
 		while (m_Running) {
-			RenderCommand::SetClearColor({ 0.8f, 0.2f, 0.3f, 1.0f });
-			RenderCommand::Clear();
-
-			m_Camera.SetPosition({0.5f, 0.5f, 0.0f});
-			m_Camera.SetRotation(45.0f);
-
-			Renderer::BeginScene(m_Camera);
-
-			Renderer::Submit(m_Shader2, m_SquareVertexArray);
-			Renderer::Submit(m_Shader, m_TriVertexArray);
-
-			Renderer::EndScene();
+			float time = (float)glfwGetTime(); //"Platform"::GetTime()
+			TimeStep timeStep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
 
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timeStep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
