@@ -4,6 +4,19 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Ursa {
+	Shader* Shader::Create(const std::string& filePath)
+	{
+		switch (Renderer::GetAPI()) {
+		case RendererAPI::API::None:
+			URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return new OpenGLShader(filePath);
+		}
+		URSA_CORE_ASSERT(false, "Unkown RendererAPI");
+		return nullptr;
+	}
+
 	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		switch (Renderer::GetAPI()) {
