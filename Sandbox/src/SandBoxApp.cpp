@@ -10,9 +10,10 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
+
 class ExampleLayer : public Ursa::Layer {
 public:
-	ExampleLayer() : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) {
+	ExampleLayer() : Layer("Example"), m_CameraController(1280.0f/720.0f, true) {
 		//Triangle/////////////
 		m_TriVertexArray.reset(Ursa::VertexArray::Create());
 
@@ -59,41 +60,24 @@ public:
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
 
-		m_Shader.reset(Ursa::Shader::Create("assets/shaders/VertexColorShader.glsl"));
-		m_FlatColorShader.reset(Ursa::Shader::Create("assets/shaders/FlatColorShader.glsl"));
-		m_TextureShader.reset(Ursa::Shader::Create("assets/shaders/Texture.glsl"));
+		m_Shader = Ursa::Shader::Create("assets/shaders/VertexColorShader.glsl");
+		m_FlatColorShader = Ursa::Shader::Create("assets/shaders/FlatColorShader.glsl");
+		auto textureShader =  m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Ursa::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_FireTexture = Ursa::Texture2D::Create("assets/textures/burn.png");
 
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
-
+		std::dynamic_pointer_cast<Ursa::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Ursa::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Ursa::TimeStep timeStep) override {
-		//URSA_TRACE("Delta time: {0}s, {1}ms", timeStep.GetSeconds(), timeStep.GetMilliSeconds());
-		
-		if (Ursa::Input::IsKeyPressed(URSA_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * timeStep;
-		else if (Ursa::Input::IsKeyPressed(URSA_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * timeStep;
-		if (Ursa::Input::IsKeyPressed(URSA_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * timeStep;
-		else if (Ursa::Input::IsKeyPressed(URSA_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * timeStep;
-		if (Ursa::Input::IsKeyPressed(URSA_KEY_E))
-			m_CameraRotation -= m_CamerarRotationSpeed * timeStep;
-		if (Ursa::Input::IsKeyPressed(URSA_KEY_Q))
-			m_CameraRotation += m_CamerarRotationSpeed * timeStep;
+		m_CameraController.OnUpdate(timeStep);
 
 		Ursa::RenderCommand::SetClearColor({ 0.8f, 0.2f, 0.3f, 1.0f });
 		Ursa::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Ursa::Renderer::BeginScene(m_Camera);
+		Ursa::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -108,10 +92,12 @@ public:
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		Ursa::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Ursa::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_FireTexture->Bind();
-		Ursa::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Ursa::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 
 		// Triangle
@@ -127,23 +113,19 @@ public:
 	}
 
 	void OnEvent(Ursa::Event& event) override {
-
+		m_CameraController.OnEvent(event);
 	}
 private:
+	Ursa::ShaderLibrary m_ShaderLibrary;
 	Ursa::Ref<Ursa::Shader> m_Shader;
-	Ursa::Ref<Ursa::VertexArray> m_TriVertexArray;
-
 	Ursa::Ref<Ursa::Shader> m_FlatColorShader;
-	Ursa::Ref<Ursa::Shader> m_TextureShader;
+	//Ursa::Ref<Ursa::Shader> m_TextureShader;
+	Ursa::Ref<Ursa::VertexArray> m_TriVertexArray;
 	Ursa::Ref<Ursa::VertexArray> m_SquareVertexArray;
 	Ursa::Ref<Ursa::Texture2D> m_Texture;
 	Ursa::Ref<Ursa::Texture2D> m_FireTexture;
 
-	Ursa::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraRotation = 0.0f;
-	float m_CameraMoveSpeed = 5.0f;
-	float m_CamerarRotationSpeed = 60.0f;
+	Ursa::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.4f, 0.8f, 0.8f };
 };

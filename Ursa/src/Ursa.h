@@ -11,6 +11,7 @@
 #include "Ursa/Input.h"
 #include "Ursa/KeyCodes.h"
 #include "Ursa/MouseCodes.h"
+#include "Ursa/OrthographicCameraController.h"
 
 #include "Ursa/ImGui/ImGuiLayer.h"
 

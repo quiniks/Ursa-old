@@ -174,6 +174,7 @@
     <ClInclude Include="src\Ursa\LayerStack.h" />
     <ClInclude Include="src\Ursa\Log.h" />
     <ClInclude Include="src\Ursa\MouseCodes.h" />
+    <ClInclude Include="src\Ursa\OrthographicCameraController.h" />
     <ClInclude Include="src\Ursa\Renderer\Buffer.h" />
     <ClInclude Include="src\Ursa\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Ursa\Renderer\RenderCommand.h" />
@@ -610,6 +611,7 @@
     <ClCompile Include="src\Ursa\Layer.cpp" />
     <ClCompile Include="src\Ursa\LayerStack.cpp" />
     <ClCompile Include="src\Ursa\Log.cpp" />
+    <ClCompile Include="src\Ursa\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ursa\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Ursa\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Ursa\Renderer\RenderCommand.cpp" />
