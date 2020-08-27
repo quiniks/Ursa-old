@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ursa/Input.h"
+#include "Ursa/Core/Input.h"
 
 namespace Ursa {
 	class WindowsInput : public Input {

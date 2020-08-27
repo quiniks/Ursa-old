@@ -10,7 +10,7 @@
 #pragma warning(pop)
 
 
-#include "Ursa/Application.h"
+#include "Ursa/Core/Application.h"
 //Temporary
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ursapch.h"
-#include "Ursa/Core.h"
-#include "Ursa/BitMask.h"
+#include "Ursa/Core/Core.h"
+#include "Ursa/Core/BitMask.h"
 
 namespace Ursa {
 

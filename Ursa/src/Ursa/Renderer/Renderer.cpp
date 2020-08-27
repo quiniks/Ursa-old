@@ -1,6 +1,6 @@
 #include "ursapch.h"
 #include "Renderer.h"
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "Renderer2D.h"
 
 namespace Ursa {
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
@@ -8,6 +8,7 @@ namespace Ursa {
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
@@ -28,8 +29,8 @@ namespace Ursa {
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);
+		shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->SetMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}

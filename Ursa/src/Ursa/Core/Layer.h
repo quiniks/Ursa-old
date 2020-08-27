@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ursa/Core.h"
+#include "Ursa/Core/Core.h"
 #include "Ursa/Events/Event.h"
 #include "Ursa/Core/TimeStep.h"
 

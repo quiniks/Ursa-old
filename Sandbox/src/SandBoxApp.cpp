@@ -1,21 +1,22 @@
 #include <Ursa.h>
+#include "Ursa/Core/EntryPoint.h"
 
 #pragma warning(push)
 #pragma warning(disable : 6011)
 #pragma warning(disable : 26495)
 #include "imgui/imgui.h"
 #pragma warning(pop)
-#include "Platform/OpenGL/OpenGLShader.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "SandBox2D.h"
 
-
+/*
 class ExampleLayer : public Ursa::Layer {
 public:
 	ExampleLayer() : Layer("Example"), m_CameraController(1280.0f/720.0f, true) {
 		//Triangle/////////////
-		m_TriVertexArray.reset(Ursa::VertexArray::Create());
+		m_TriVertexArray = Ursa::VertexArray::Create();
 
 		float triVertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f,		1.0f, 0.4f, 0.7f, 1.0f,
@@ -37,7 +38,7 @@ public:
 		m_TriVertexArray->SetIndexBuffer(triIndexBuffer);
 
 		//Square/////////////
-		m_SquareVertexArray.reset(Ursa::VertexArray::Create());
+		m_SquareVertexArray = Ursa::VertexArray::Create();
 
 		float sqrVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -67,8 +68,8 @@ public:
 		m_Texture = Ursa::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_FireTexture = Ursa::Texture2D::Create("assets/textures/burn.png");
 
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Ursa::TimeStep timeStep) override {
@@ -81,8 +82,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Ursa::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
@@ -129,11 +130,13 @@ private:
 
 	glm::vec3 m_SquareColor = { 0.4f, 0.8f, 0.8f };
 };
+*/
 
 class Sandbox : public Ursa::Application {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new SandBox2D());
 	}
 
 	~Sandbox() {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Ursa/Core.h"
+#include "Ursa/Core/Core.h"
 
 namespace Ursa {
 	class Texture {

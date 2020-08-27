@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ursa/Window.h"
+#include "Ursa/Core/Window.h"
 #include "Ursa/Renderer/RenderContext.h"
 #include <GLFW/glfw3.h>
 

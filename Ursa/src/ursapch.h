@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Ursa/Log.h"
+#include "Ursa/Core/Log.h"
 
 #ifdef URSA_PLATFORM_WINDOWS
 	#include <Windows.h>

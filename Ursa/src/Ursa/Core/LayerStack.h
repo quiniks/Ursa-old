@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ursa/Core.h"
+#include "Ursa/Core/Core.h"
 #include "Layer.h"
 #include <vector>
 

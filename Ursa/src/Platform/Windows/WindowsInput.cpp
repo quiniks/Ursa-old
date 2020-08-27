@@ -1,7 +1,7 @@
 #include "ursapch.h"
 #include "WindowsInput.h"
 
-#include "Ursa/Application.h"
+#include "Ursa/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Ursa {

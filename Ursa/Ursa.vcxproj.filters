@@ -81,20 +81,41 @@
     <ClInclude Include="src\Ursa.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Application.h">
-      <Filter>src\Ursa</Filter>
+    <ClInclude Include="src\Ursa\Core\Application.h">
+      <Filter>src\Ursa\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\BitMask.h">
-      <Filter>src\Ursa</Filter>
+    <ClInclude Include="src\Ursa\Core\BitMask.h">
+      <Filter>src\Ursa\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Core.h">
-      <Filter>src\Ursa</Filter>
+    <ClInclude Include="src\Ursa\Core\Core.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\EntryPoint.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\Input.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\KeyCodes.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\Layer.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\LayerStack.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\Log.h">
+      <Filter>src\Ursa\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Core\MouseCodes.h">
+      <Filter>src\Ursa\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Core\TimeStep.h">
       <Filter>src\Ursa\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\EntryPoint.h">
-      <Filter>src\Ursa</Filter>
+    <ClInclude Include="src\Ursa\Core\Window.h">
+      <Filter>src\Ursa\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Events\ApplicationEvent.h">
       <Filter>src\Ursa\Events</Filter>
@@ -111,28 +132,13 @@
     <ClInclude Include="src\Ursa\ImGui\ImGuiLayer.h">
       <Filter>src\Ursa\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Input.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\KeyCodes.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\Layer.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\LayerStack.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\Log.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\MouseCodes.h">
-      <Filter>src\Ursa</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\Buffer.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\OrthographicCamera.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\OrthographicCameraController.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\RenderCommand.h">
@@ -155,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\VertexArray.h">
       <Filter>src\Ursa\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ursa\Window.h">
-      <Filter>src\Ursa</Filter>
     </ClInclude>
     <ClInclude Include="src\ursapch.h">
       <Filter>src</Filter>
@@ -1389,7 +1392,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\OrthographicCameraController.h" />
+    <ClInclude Include="src\Ursa\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1416,8 +1419,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ursa\Application.cpp">
-      <Filter>src\Ursa</Filter>
+    <ClCompile Include="src\Ursa\Core\Application.cpp">
+      <Filter>src\Ursa\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Core\Layer.cpp">
+      <Filter>src\Ursa\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Core\LayerStack.cpp">
+      <Filter>src\Ursa\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Core\Log.cpp">
+      <Filter>src\Ursa\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\ImGui\ImGuiBuild.cpp">
       <Filter>src\Ursa\ImGui</Filter>
@@ -1425,19 +1437,13 @@
     <ClCompile Include="src\Ursa\ImGui\ImGuiLayer.cpp">
       <Filter>src\Ursa\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ursa\Layer.cpp">
-      <Filter>src\Ursa</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ursa\LayerStack.cpp">
-      <Filter>src\Ursa</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ursa\Log.cpp">
-      <Filter>src\Ursa</Filter>
-    </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Buffer.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\RenderCommand.cpp">
@@ -1464,6 +1470,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ursa\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Ursa\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

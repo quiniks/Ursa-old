@@ -1,7 +1,7 @@
 #include "ursapch.h"
 #include "OrthographicCameraController.h"
-#include "Ursa/Input.h"
-#include "Ursa/KeyCodes.h"
+#include "Ursa/Core/Input.h"
+#include "Ursa/Core/KeyCodes.h"
 
 namespace Ursa {
 	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation)
