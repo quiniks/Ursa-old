@@ -9,7 +9,8 @@ namespace Ursa {
 
 	struct Renderer2DStorage {
 		Ref<VertexArray> VertexArray;
-		Ref<Shader> Shader;
+		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_Data;
@@ -21,16 +22,17 @@ namespace Ursa {
 		s_Data->VertexArray = VertexArray::Create();
 
 		float sqrVertices[5 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		Ref<VertexBuffer> squareVertexBuffer;
 		squareVertexBuffer.reset(VertexBuffer::Create(sqrVertices, sizeof(sqrVertices)));
 		squareVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position" }
+			{ ShaderDataType::Float3, "a_Position" },
+			{ ShaderDataType::Float2, "a_TexCoord" }
 			});
 		s_Data->VertexArray->AddVertexBuffer(squareVertexBuffer);
 
@@ -39,9 +41,15 @@ namespace Ursa {
 		squareIndexBuffer.reset(IndexBuffer::Create(sqrIndices, sizeof(sqrIndices) / sizeof(uint32_t)));
 		s_Data->VertexArray->SetIndexBuffer(squareIndexBuffer);
 
-		s_Data->Shader = Shader::Create("assets/shaders/FlatColorShader.glsl");
+		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
+		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
+		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetInt("u_Texture", 0);
 	}	 
-		 
+
 	void Renderer2D::Shutdown()
 	{	 
 		delete s_Data;
@@ -49,9 +57,8 @@ namespace Ursa {
 		 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{	 
-		s_Data->Shader->Bind();
-		s_Data->Shader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		//s_Data->Shader->SetMat4("u_Transform", glm::mat4(1.0f));
+		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}	 
 		 
 	void Renderer2D::EndScene()
@@ -66,15 +73,38 @@ namespace Ursa {
 		 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
-		s_Data->Shader->Bind();
-		s_Data->Shader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->SetFloat2("u_TexScale", {1.0f, 1.0f});
+		s_Data->WhiteTexture->Bind();
 
 		glm::mat4 transform = 
 			glm::translate(glm::mat4(1.0f), position) *
 			glm::rotate(glm::mat4(1.0f), glm::radians(rotation), {0.0f, 0.0f, 1.0f}) *
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		s_Data->Shader->SetMat4("u_Transform", transform);
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
+		s_Data->VertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Data->VertexArray);
+	}
+	 
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture)
+	{
+		DrawQuad({ position.x, position.y, 0.0f }, size, rotation, texture);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture)
+	{
+		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		s_Data->TextureShader->SetFloat2("u_TexScale", { 1.0f, 1.0f });
+
+		texture->Bind();
+
+		glm::mat4 transform =
+			glm::translate(glm::mat4(1.0f), position) *
+			glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f }) *
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray);
 	}

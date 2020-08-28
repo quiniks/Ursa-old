@@ -18,5 +18,6 @@ private:
 	//Temporary
 	Ursa::Ref<Ursa::VertexArray> m_SquareVertexArray;
 	Ursa::Ref<Ursa::Shader> m_FlatColorShader;
+	Ursa::Ref<Ursa::Texture2D> m_Texture;
 	glm::vec3 m_SquareColor = { 0.4f, 0.8f, 0.8f };
 };
