@@ -15,6 +15,8 @@
 
 #include "Ursa/Core/Log.h"
 
+#include "Ursa/Debug/Instrumentor.h"
+
 #ifdef URSA_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

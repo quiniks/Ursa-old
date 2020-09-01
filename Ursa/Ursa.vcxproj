@@ -170,6 +170,7 @@
     <ClInclude Include="src\Ursa\Core\MouseCodes.h" />
     <ClInclude Include="src\Ursa\Core\TimeStep.h" />
     <ClInclude Include="src\Ursa\Core\Window.h" />
+    <ClInclude Include="src\Ursa\Debug\Instrumentor.h" />
     <ClInclude Include="src\Ursa\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Ursa\Events\Event.h" />
     <ClInclude Include="src\Ursa\Events\KeyEvent.h" />

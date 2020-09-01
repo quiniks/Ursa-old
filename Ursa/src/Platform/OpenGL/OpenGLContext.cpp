@@ -12,6 +12,7 @@ namespace Ursa {
 
 	void OpenGLContext::Init()
 	{
+		URSA_PROFILE_FUNCTION();
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		URSA_CORE_ASSERT(status, "Failed to initialise Glad");
@@ -24,6 +25,7 @@ namespace Ursa {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		URSA_PROFILE_FUNCTION();
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

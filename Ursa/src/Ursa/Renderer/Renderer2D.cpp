@@ -17,6 +17,7 @@ namespace Ursa {
 
 	void Renderer2D::Init()
 	{	 
+		URSA_PROFILE_FUNCTION();
 		s_Data = new Renderer2DStorage;
 
 		s_Data->VertexArray = VertexArray::Create();
@@ -52,18 +53,20 @@ namespace Ursa {
 
 	void Renderer2D::Shutdown()
 	{	 
+		URSA_PROFILE_FUNCTION();
 		delete s_Data;
 	}	 
 		 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{	 
+		URSA_PROFILE_FUNCTION();
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}	 
 		 
 	void Renderer2D::EndScene()
 	{	 
-		 
+		URSA_PROFILE_FUNCTION();
 	}	 
 		 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color)
@@ -73,6 +76,7 @@ namespace Ursa {
 		 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
+		URSA_PROFILE_FUNCTION();
 		s_Data->TextureShader->SetFloat4("u_Color", color);
 		s_Data->TextureShader->SetFloat2("u_TexScale", {1.0f, 1.0f});
 		s_Data->WhiteTexture->Bind();
@@ -94,6 +98,7 @@ namespace Ursa {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture)
 	{
+		URSA_PROFILE_FUNCTION();
 		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
 		s_Data->TextureShader->SetFloat2("u_TexScale", { 1.0f, 1.0f });
 

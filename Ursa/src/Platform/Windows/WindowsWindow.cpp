@@ -3,10 +3,11 @@
 #include "Ursa/Events/ApplicationEvent.h"
 #include "Ursa/Events/MouseEvent.h"
 #include "Ursa/Events/KeyEvent.h"
+#include "Ursa/Renderer//Renderer.h"
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Ursa {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* desc) {
 		URSA_CORE_ERROR("GLFW ERROR ({0}): {1}", error, desc);
@@ -17,29 +18,41 @@ namespace Ursa {
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProperties& props) {
+		URSA_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow() {
+		URSA_PROFILE_FUNCTION();
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProperties& props) {
+		URSA_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
 		URSA_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized) {
-			//TODO: glfwTerminate on system shutdown
+		if (s_GLFWWindowCount == 0) {
+			URSA_PROFILE_SCOPE("glfwInit");
 			int success = glfwInit();
 			URSA_ASSERT(success, "Could not initialise GLFW");
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		#if defined(URSA_DEBUG)
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+		#endif
+
+		{
+			URSA_PROFILE_SCOPE("glfwCreateWindow");
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
 		
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
@@ -52,8 +65,8 @@ namespace Ursa {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
 			data.Height = height;
+
 			WindowResizeEvent event(width, height);
-			//URSA_CORE_WARN("{0}, {1}", width, height);
 			data.EventCallback(event);
 		});
 
@@ -127,15 +140,22 @@ namespace Ursa {
 	}
 
 	void WindowsWindow::Shutdown() {
+		URSA_PROFILE_FUNCTION();
 		glfwDestroyWindow(m_Window);
+		--s_GLFWWindowCount;
+		if (s_GLFWWindowCount == 0) {
+			glfwTerminate();
+		}
 	}
 
 	void WindowsWindow::OnUpdate() {
+		URSA_PROFILE_FUNCTION();
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {
+		URSA_PROFILE_FUNCTION();
 		if (enabled)
 			glfwSwapInterval(1);
 		else
