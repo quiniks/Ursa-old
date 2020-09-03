@@ -40,7 +40,6 @@ namespace Ursa {
 		m_LayerStack.PushOverlay(layer);
 	}
 
-
 	void Application::OnEvent(Event& e) {
 		URSA_PROFILE_FUNCTION();
 		EventDispatcher dispatcher(e);

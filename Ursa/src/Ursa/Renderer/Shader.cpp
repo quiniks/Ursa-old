@@ -11,7 +11,7 @@ namespace Ursa {
 			URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLShader>(filePath);
+			return CreateRef<OpenGLShader>(filePath);
 		}
 		URSA_CORE_ASSERT(false, "Unkown RendererAPI");
 		return nullptr;
@@ -24,7 +24,7 @@ namespace Ursa {
 			URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+			return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 		URSA_CORE_ASSERT(false, "Unkown RendererAPI");
 		return nullptr;

@@ -11,7 +11,7 @@ namespace Ursa {
 				URSA_CORE_ASSERT(false, "RendererAPI::None is currently noy supported");
 				return nullptr;
 			case RendererAPI::API::OpenGL:
-				return std::make_shared<OpenGLVertexArray>();
+				return CreateRef<OpenGLVertexArray>();
 		}
 		URSA_CORE_ASSERT(false, "Unkown RendererAPI");
 		return nullptr;
