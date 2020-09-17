@@ -18,6 +18,11 @@ private:
 	//Temporary
 	Ursa::Ref<Ursa::VertexArray> m_SquareVertexArray;
 	Ursa::Ref<Ursa::Shader> m_FlatColorShader;
-	Ursa::Ref<Ursa::Texture2D> m_Texture;
-	glm::vec3 m_SquareColor = { 0.4f, 0.8f, 0.8f };
+	Ursa::Ref<Ursa::Texture2D> m_CheckerTexture;
+	Ursa::Ref<Ursa::Texture2D> m_TileSheet;
+	Ursa::Ref<Ursa::SubTexture2D> m_Bonfire;
+	Ursa::Ref<Ursa::SubTexture2D> m_U;
+	Ursa::Ref<Ursa::SubTexture2D> m_R;
+	Ursa::Ref<Ursa::SubTexture2D> m_S;
+	Ursa::Ref<Ursa::SubTexture2D> m_A;
 };
