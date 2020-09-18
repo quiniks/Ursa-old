@@ -20,9 +20,7 @@ private:
 	Ursa::Ref<Ursa::Shader> m_FlatColorShader;
 	Ursa::Ref<Ursa::Texture2D> m_CheckerTexture;
 	Ursa::Ref<Ursa::Texture2D> m_TileSheet;
-	Ursa::Ref<Ursa::SubTexture2D> m_Bonfire;
-	Ursa::Ref<Ursa::SubTexture2D> m_U;
-	Ursa::Ref<Ursa::SubTexture2D> m_R;
-	Ursa::Ref<Ursa::SubTexture2D> m_S;
-	Ursa::Ref<Ursa::SubTexture2D> m_A;
+	Ursa::Ref<Ursa::Texture2D> m_UrsaTitle;
+	std::unordered_map<char, Ursa::Ref<Ursa::SubTexture2D>> m_TextureMap;
+	uint32_t m_MapWidth = 0, m_MapHeight = 0;
 };

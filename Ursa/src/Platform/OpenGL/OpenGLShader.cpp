@@ -85,6 +85,7 @@ namespace Ursa {
 			URSA_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type");
 
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
+			URSA_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
 			pos = source.find(typeToken, nextLinePos);
 			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
 		}
@@ -95,8 +96,8 @@ namespace Ursa {
 	{
 		URSA_PROFILE_FUNCTION();
 		GLuint program = glCreateProgram();
-		std::array<GLenum, 2> glShaderIDs;
 		URSA_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders");
+		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
 
 		for (auto& kv : shaderSources) {
@@ -160,6 +161,7 @@ namespace Ursa {
 
 		for (auto id : glShaderIDs) {
 			glDetachShader(program, id);
+			glDeleteShader(id);
 		}
 	}
 
