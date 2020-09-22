@@ -13,8 +13,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Ursa\vendor\ImGui\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ursa", "Ursa\Ursa.vcxproj", "{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ursa-Editor", "Ursa-Editor\Ursa-Editor.vcxproj", "{94C7FC08-007D-75FE-8971-6FD5F5256C02}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -52,12 +50,6 @@ Global
 		{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}.Dist|x64.Build.0 = Dist|x64
 		{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}.Release|x64.ActiveCfg = Release|x64
 		{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}.Release|x64.Build.0 = Release|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Debug|x64.ActiveCfg = Debug|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Debug|x64.Build.0 = Debug|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Dist|x64.ActiveCfg = Dist|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Dist|x64.Build.0 = Dist|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Release|x64.ActiveCfg = Release|x64
-		{94C7FC08-007D-75FE-8971-6FD5F5256C02}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

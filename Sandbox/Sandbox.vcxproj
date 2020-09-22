@@ -131,9 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\SandBox2D.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\SandBox2D.cpp" />
     <ClCompile Include="src\SandBoxApp.cpp" />
   </ItemGroup>
@@ -141,6 +138,9 @@
     <ProjectReference Include="..\Ursa\Ursa.vcxproj">
       <Project>{E09F8D7C-CCD6-8E0D-75C3-741061D90A0F}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SandBox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,7 +14,7 @@ namespace Ursa {
 
 	class Application {
 	public:
-		Application(const std::string& name = "Ursa");
+		Application();
 		virtual ~Application();
 		void Run();
 		void OnEvent(Event& e);
@@ -24,8 +24,6 @@ namespace Ursa {
 
 		static Application& Get() { return *s_Instance; }
 		Window& GetWindow() { return *m_Window; }
-
-		void Close();
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
