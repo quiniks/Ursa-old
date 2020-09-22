@@ -8,14 +8,14 @@ namespace Ursa {
 
 	Application* Application::s_Instance = nullptr;
 	
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		URSA_PROFILE_FUNCTION();
 		URSA_CORE_ASSERT(!s_Instance, "Applcation already exists");
 
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = Window::Create(WindowProperties(name));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
@@ -79,6 +79,11 @@ namespace Ursa {
 
 			m_Window->OnUpdate();
 		}
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	bool Application::OnWindowClosed(WindowCloseEvent& e) {

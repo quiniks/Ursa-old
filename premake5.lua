@@ -134,3 +134,48 @@ project "Sandbox"
 			defines "URSA_DIST"
 			runtime "Release"
 			optimize "on"
+
+project "Ursa-Editor"
+	location "Ursa-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files {
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs {
+		"Ursa/vendor/spdlog/include",
+		"Ursa/src",
+		"Ursa/vendor",
+		"%{IncludeDir.glm}"
+
+	}
+
+	links {
+		"Ursa"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		filter "configurations:Debug"
+			defines "URSA_DEBUG"
+			runtime "Debug"
+			symbols "on"
+
+		filter "configurations:Release"
+			defines "URSA_RELEASE"
+			runtime "Release"
+			optimize "on"
+
+		filter "configurations:Dist"
+			defines "URSA_DIST"
+			runtime "Release"
+			optimize "on"

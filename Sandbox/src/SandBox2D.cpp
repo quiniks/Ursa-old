@@ -69,10 +69,10 @@ void SandBox2D::OnUpdate(Ursa::TimeStep ts)
 		URSA_PROFILE_SCOPE("Renderer Draw");
 		Ursa::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		Ursa::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, 0.0f, m_CheckerTexture, { 10.0f, 10.0f }, { 0.1f, 0.1f, 0.1f, 1.0f });
-		/*
-		Ursa::Renderer2D::DrawQuad({ -0.5f, 0.0f }, { 0.7f, 0.7f }, glm::radians(rotation), { 0.8f, 0.2f, 0.3f, 1.0f });
-		Ursa::Renderer2D::DrawQuad({ 0.5f, 0.0f }, { 0.5f, 0.7f }, 0.0f, { 0.4f, 0.8f, 0.8f, 1.0f });
 		
+		//Ursa::Renderer2D::DrawQuad({ -0.5f, 0.0f }, { 0.7f, 0.7f }, glm::radians(rotation), { 0.8f, 0.2f, 0.3f, 1.0f });
+		//Ursa::Renderer2D::DrawQuad({ 0.5f, 0.0f }, { 0.5f, 0.7f }, 0.0f, { 0.4f, 0.8f, 0.8f, 1.0f });
+		/*
 		for (float y = -5.0f; y < 5.0f; y += 0.5f) {
 			for (float x = -5.0f; x < 5.0f; x += 0.5f) {
 				glm::vec4 color = { (x + 5.0f) / 10.0f, 0.0f, (y + 5.0f) / 10.0f, 0.5f };
@@ -92,6 +92,7 @@ void SandBox2D::OnUpdate(Ursa::TimeStep ts)
 				Ursa::Renderer2D::DrawQuad({ x + 0.5f - m_MapWidth / 2.0f, m_MapHeight - y - 0.5f - m_MapHeight / 2.0f, 0.5f }, { 1.0f, 1.0f }, 0.0f, texture);
 			}
 		}
+		
 
 		//Ursa::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.2f }, { 3.8f, 2.0f }, 0.0f, m_UrsaTitle);
 		Ursa::Renderer2D::EndScene();
@@ -101,6 +102,7 @@ void SandBox2D::OnUpdate(Ursa::TimeStep ts)
 void SandBox2D::OnImGuiRender()
 {
 	URSA_PROFILE_FUNCTION();
+
 	ImGui::Begin("SandBox");
 	auto stats = Ursa::Renderer2D::GetStats();
 	ImGui::Text("Renderer2D stats");

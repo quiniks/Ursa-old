@@ -19,6 +19,9 @@
     <Filter Include="src\Ursa\Core">
       <UniqueIdentifier>{0F12A08E-7BD2-1BC5-440D-6542B08C60A1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ursa\Debug">
+      <UniqueIdentifier>{0DAFAE62-F97C-A268-E210-138FCE7D7ECD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Ursa\Events">
       <UniqueIdentifier>{5BE30EBC-C76E-7C80-D07F-FF743C8AD880}</UniqueIdentifier>
     </Filter>
@@ -58,6 +61,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -117,6 +123,9 @@
     <ClInclude Include="src\Ursa\Core\Window.h">
       <Filter>src\Ursa\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\Debug\Instrumentor.h">
+      <Filter>src\Ursa\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Events\ApplicationEvent.h">
       <Filter>src\Ursa\Events</Filter>
     </ClInclude>
@@ -135,6 +144,9 @@
     <ClInclude Include="src\Ursa\Renderer\Buffer.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\FrameBuffer.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\OrthographicCamera.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
@@ -150,10 +162,16 @@
     <ClInclude Include="src\Ursa\Renderer\Renderer.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\Renderer2D.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\RendererAPI.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\Shader.h">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ursa\Renderer\SubTexture2D.h">
       <Filter>src\Ursa\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ursa\Renderer\Texture.h">
@@ -1392,15 +1410,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ursa\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Ursa\Debug\Instrumentor.h" />
-    <ClInclude Include="src\Ursa\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1442,6 +1460,9 @@
     <ClCompile Include="src\Ursa\Renderer\Buffer.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\FrameBuffer.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\OrthographicCamera.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
@@ -1454,10 +1475,16 @@
     <ClCompile Include="src\Ursa\Renderer\Renderer.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\Renderer2D.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\RendererAPI.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Shader.cpp">
+      <Filter>src\Ursa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ursa\Renderer\SubTexture2D.cpp">
       <Filter>src\Ursa\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ursa\Renderer\Texture.cpp">
@@ -1472,7 +1499,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ursa\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\Ursa\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\Ursa\Core\Window.cpp" />
   </ItemGroup>
 </Project>

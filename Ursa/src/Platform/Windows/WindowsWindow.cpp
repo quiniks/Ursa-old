@@ -13,10 +13,6 @@ namespace Ursa {
 		URSA_CORE_ERROR("GLFW ERROR ({0}): {1}", error, desc);
 	}
 
-	Window* Window::Create(const WindowProperties& props) {
-		return new WindowsWindow(props);
-	}
-
 	WindowsWindow::WindowsWindow(const WindowProperties& props) {
 		URSA_PROFILE_FUNCTION();
 		Init(props);
